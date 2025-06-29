@@ -25,8 +25,19 @@ group_by(date) %>%
 summarize(total_steps = sum(steps, na.rm = TRUE))
 head(total_steps_per_day)
 ```
+```{r}
+ggplot(total_steps_per_day, aes(x = total_steps)) +
+geom_histogram(binwidth = 1000, fill = "skyblue", color = "black") +
+labs(title = "Histogram of Total Steps per Day", x = "Total Steps per Day", y = "Frequency")
 
+```
 ## What is the average daily activity pattern?
+```{r}
+mean_steps <- mean(total_steps_per_day$total_steps, na.rm = TRUE)
+median_steps <- median(total_steps_per_day$total_steps, na.rm = TRUE)
+mean_steps
+median_steps
+```
 ```{r}
 avg_steps_interval <- activity %>%
 group_by(interval) %>%
